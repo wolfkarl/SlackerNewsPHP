@@ -11,6 +11,18 @@
     <input type="text"  id="title" name="title" placeholder="Post Titel">
   </div>
 
+
+   <div class="form-group">
+    <label for="cat_id">Kategorie</label>
+     <select id="cat_id" name="cat_id">
+        {% for cat in cats %}
+        	<option value="{{cat.id}}">{{cat.name}}</option>
+        {% endfor %}
+      </select>
+  </div>
+
+
+
   <button type="submit" class="btn btn-default">Submit</button>
 
 

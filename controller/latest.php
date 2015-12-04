@@ -7,9 +7,12 @@
 	foreach ($posts as $post)
 	{
 		$post->user;
+		$post->cat;
 	}
 
+	$cats = R::findAll('cat');
 
+	$params['cats'] = $cats;
 	$params['posts'] = $posts;
 	$params['session'] = $_SESSION;
 

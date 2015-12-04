@@ -7,7 +7,7 @@
 		$post->title = $_POST['title'];
 		$post->url = $_POST['url'];
 		$post->user = $user;
-		$post->cat_id = 1;
+		$post->cat_id = $_POST['cat_id'];
 		$post->points = 1;
 		$post->time = time();
 		$id = R::store( $post );

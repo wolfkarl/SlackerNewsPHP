@@ -41,6 +41,11 @@ label
 {
 	margin-bottom: 0.7em;
 }
+
+form
+{
+	margin-bottom: 1em;
+}
 input
 {
 	width: 200px;
