@@ -1,0 +1,4 @@
+
+RewriteEngine On
+
+RewriteRule ^(.*).htm$  index.php?action=$1

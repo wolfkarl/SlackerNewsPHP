@@ -1,41 +1,64 @@
 <?php
 
+
+	// CONFIG
+
+	define("DEFAULT_CONTROLLER", 'latest');
+
+
+
 	$start = microtime(true);
+	$params = array();
+
+	// LOAD
+
+	require('helpers/hash.php');
 
 	require('lib/rb.php'); // RedBean ORM
 	R::setup( 'sqlite:data/slacker.db');
 
+	require_once 'lib/Twig/Autoloader.php';
+	Twig_Autoloader::register();
 
-	// $post = R::dispense( 'post' );
-	// $post->title = 'Farid Bang erzählt einen Witz';
-	// $post->url = 'https://www.youtube.com/watch?v=ISjOz5UnuRc';
-	// $post->user_id = 1;
-	// $post->cat_id = 1;
-	// $post->points = 1;
-	// $post->time = time();
-	// $id = R::store( $post );
+	$loader = new Twig_Loader_Filesystem('views/');
+	$twig = new Twig_Environment($loader, array('debug' => true));
 
-	$posts = R::find('post');
+	$twig->addExtension(new Twig_Extension_Debug()); # debug
 
 
+	// SESSION
+
+	// server should keep session data for AT LEAST 1 hour
+	ini_set('session.gc_maxlifetime', 360000);
+
+	// each client should remember their session id for EXACTLY 1 hour
+	session_set_cookie_params(360000);
+
+	session_start();
+	if (isset($_SESSION['user']))
+	{
+		$user = $_SESSION['user'];
+		$params['user'] = $user;
+	}
+
+
+	if (isset($_GET['action']))
+	{
+		$controller = $_GET['action'];
+	}
+	else
+	{
+		$controller = DEFAULT_CONTROLLER;
+	}
+
+	$controller_file = "controller/$controller.php";
+
+	if (!file_exists($controller_file))
+	{
+		$controller_file = "controller/".DEFAULT_CONTROLLER.".php";
+	}
+
+	require($controller_file);
 ?>
 
-<h1>SlackerNews</h1>
 
-
-<?php foreach ($posts as $post): ?>
-
-	<div class="post">
-	<p><a href="<?php echo $post->url ?>"><?php echo $post->title ?></a> (<?php echo $post->points ?>)<br>
-	<?php echo date('d.m.Y H:i', $post->time) ?></p>
-	</div>
-
-<?php endforeach ?>
-
-<hr>
-
-<?php 
-
-	$end = microtime(true);
-	printf("Page was generated in %f seconds", $end - $start);
- ?>

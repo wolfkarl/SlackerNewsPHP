@@ -1,0 +1,22 @@
+{% include '_header.twig' %}
+
+
+
+        {% for post in posts %}
+            {% include '_post.twig' %}
+        {% endfor %}
+
+
+<hr>
+{% if user %}
+<h2>Neuer Post</h2>
+{% include '_new.twig' %}
+
+{% else %}
+<h2 id="reg">Anmelden / Registrieren</h2>
+{% include '_reg_form.twig' %}
+{%endif%}
+
+
+{% include '_footer.twig' %}
+

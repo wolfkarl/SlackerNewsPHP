@@ -1,0 +1,31 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    	<meta charset=utf-8 />
+    	<title>SlackerNews</title>
+    	<link rel="stylesheet" type="text/css" media="screen" href="assets/css/slacker.css" />
+
+    </head>
+    <body>
+
+	<div class="container">
+
+    <header>
+<div class="brand">
+  <h1>SlackerNews</h1>
+  <span>The B-Side of the Internet</span>
+</div>
+
+      <div class="userinfo">
+        {% if user %}
+          <p>Eingeloggt als <strong>{{ user.name }}</strong><br>
+            <a href="logout.htm">Logout</a></p>
+        {% else %}
+        <p>Nicht angemeldet. <br>
+        <a href="#reg">Login</a> </p>
+      {% endif %}
+      </div>
+   </header>
+
+   	<hr class="clearfix">
+     

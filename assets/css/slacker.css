@@ -1,0 +1,47 @@
+.container
+{
+	margin: 3em auto;
+	max-width: 960px;
+}
+
+h1
+{
+	margin-bottom: 0;
+	padding-bottom: 2px;
+}
+
+header
+{
+	margin-bottom: 2em;
+}
+
+.brand
+{
+	width: 400px;
+	margin-right: 3em;
+}
+.userinfo
+{
+	float: right;
+	width: 200px;
+}
+
+.clearfix
+{
+	clear: both;
+}
+
+label
+{
+	font-weight: bold;
+	display: block;
+}
+
+.form-group
+{
+	margin-bottom: 0.7em;
+}
+input
+{
+	width: 200px;
+}
