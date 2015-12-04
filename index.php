@@ -13,6 +13,7 @@
 	// LOAD
 
 	require('helpers/hash.php');
+	require('helpers/redirect.php');
 
 	require('lib/rb.php'); // RedBean ORM
 	R::setup( 'sqlite:data/slacker.db');

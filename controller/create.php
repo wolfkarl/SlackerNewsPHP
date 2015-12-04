@@ -11,12 +11,12 @@
 		$post->points = 1;
 		$post->time = time();
 		$id = R::store( $post );
-		header('Location: .');
+		redirect();
 
 	}
 	else
 	{
-		header('Location: error.htm');
+		error();
 	}
 
 ?>

@@ -12,7 +12,7 @@
 			if ($user->password == slackerhash($_POST['password']))
 			{
 				$_SESSION['user'] = $user;
-				header('Location: .');
+				redirect();
 			}
 			else
 			{
@@ -26,7 +26,7 @@
 			$user->password = slackerhash($_POST['password']);
 			$id = R::store( $user );
 			$_SESSION['user'] = $user;
-			header('Location: .');
+			redirect();
 		}
 
 
@@ -36,10 +36,6 @@
 		error();
 	}
 
-	function error()
-	{
-		header('Location: error.htm');
-		exit();
-	}
+
 
 ?>
